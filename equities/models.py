@@ -30,9 +30,12 @@ class Universe(object):
         """returns a dict mapping names to ciks"""
         return self.api.name_to_cik()
 
-    def prices(self,cik_or_ticker):
-        """returns a price dataframe for the given cik or tickers"""
-        return self.api.prices(cik_or_ticker)
+    def prices(self,cik_or_ticker,period='max'):
+        """returns a price dataframe for the given cik or tickers and period.
+           period must be a string contained in the following list:
+           ['1d','5d','1mo','3mo','6mo','1y','2y','5y','10y','ytd','max'].
+        """
+        return self.api.prices(cik_or_ticker,period)
 
     def actions(self,cik_or_ticker):
         """returns a corporate actions dataframe for the given cik or tickers"""

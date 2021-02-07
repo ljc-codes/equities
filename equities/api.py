@@ -95,10 +95,13 @@ class Client(object):
         """returns a dict mapping names to ciks"""
         return self._invert_dict(self.cik_to_name)
 
-    def prices(self,cik_or_ticker):
-        """returns a price dataframe for the given cik or tickers"""
+    def prices(self,cik_or_ticker,period='max'):
+        """returns a price dataframe for the given cik or tickers and period.
+           period must be a string contained in the following list:
+           ['1d','5d','1mo','3mo','6mo','1y','2y','5y','10y','ytd','max'].
+        """
         try:
-            return self._query_y_finance(cik_or_ticker).history(period='max')
+            return self._query_y_finance(cik_or_ticker).history(period=period)
         except Exception as e:
             return pd.DataFrame()
 
